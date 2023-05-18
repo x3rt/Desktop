@@ -131,6 +131,25 @@ function initMenuBar(win: BrowserWindow) {
                     accelerator: "CmdOrCtrl+=",
                     role: "zoomIn",
                     visible: false
+                },
+                {
+                    label: "Quit",
+                    accelerator: "CmdOrCtrl+Q",
+                    click: () => app.quit(),
+                    visible: false
+                },
+                // Quick Switcher keybindings (Ctrl + T, Ctrl + K)
+                {
+                    label: "Quick Switcher",
+                    accelerator: "CmdOrCtrl+T",
+                    click: async () => {
+                        // TODO: Check for layers
+                        // TODO: Don't use executeJavaScript
+
+                        await win.webContents.executeJavaScript(
+                            "Vencord.Webpack.findByCode('type:\"QUICKSWITCHER_SHOW\"')();"
+                        );
+                    }
                 }
             ]
         },
